@@ -1,0 +1,12 @@
+body{
+    background-color: slategrey;
+    margin: 10px;
+    font-family: 'roboto', sans-serif;
+    color: black;
+}
+.title{
+    color: purple;
+}
+.link{
+    color: blue;
+}
