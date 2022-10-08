@@ -1,0 +1,5 @@
+- 👋 Hi, I’m @Darth-Shark
+- 👀 I’m interested in Video games, reading, and programming.
+- 🌱 I’m currently learning Java, Geometry, Spanish, and other subjects through Tech Trep.
+- 💞️ I’m currently not looking to collaborate. Subject to change.
+- 📫 Email me at michael.rollins@oneidaihla.org
