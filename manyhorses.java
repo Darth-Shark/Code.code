@@ -12,3 +12,5 @@ public class manyhorses {
         System.out.print(h1.name + " " + h1.birthYear + ", " + h2.name + " " + h2.birthYear + ", " + h3.name + " " + h3.birthYear + ".");
     }  
 };
+output:
+Calf 2022, Mare 2121, Stallion 203.
