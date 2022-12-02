@@ -1,7 +1,8 @@
 //More complex dragon class created by Michael Rollins
 //for CTE Software Development class 2022
+import java.util.*;  
 
-public class Dragon {
+public class Dragon{
     String name;//Name of dragon.
     String breathType;//Breath weapon type of dragon.
     int maxHealth;//Max health of dragon.
@@ -217,7 +218,7 @@ class DragonAggressive extends Dragon{
             breathe(sourceDragon);
         };
     };
-};
+};    
 class DragonPractice extends DragonAggressive{
     int XP;
     public DragonPractice(String dragonName, int maxHealthAmount, int pwr, int value){
@@ -268,3 +269,40 @@ class doManyDragon{
 //        dFL.damage(dFL.dmg);
     };
 };
+class DragonSort extends Dragon implements Comparable<Dragon>{
+    //    int pwr;
+    public DragonSort(String dragonName, int maxHealthAmount, int pwr){
+        super(dragonName, maxHealthAmount, pwr);//Calling the original dragon constructor.
+    };
+    public int compareTo(Dragon dg){    
+        if(attackPwr==dg.attackPwr)    
+        return 0;    
+        else if(attackPwr>dg.attackPwr)    
+        return 1;    
+        else    
+        return -1;    
+    };   
+};
+class doSortDragon{    
+    public static void main(String args[]){    
+        ArrayList<DragonSort> dragonList=new ArrayList<DragonSort>();    
+        dragonList.add(new DragonSort("Fes",155,21));//creates many dragons.    
+        dragonList.add(new DragonSort("Gar",130,30));    
+        dragonList.add(new DragonSort("Kli",95,15));
+        dragonList.add(new DragonSort("Brs",340,43));    
+        dragonList.add(new DragonSort("Rri",45,20));    
+        dragonList.add(new DragonSort("Ser",85,7));    
+        dragonList.add(new DragonSort("Brd",12,1));    
+        dragonList.add(new DragonSort("Agt",120,27));    
+        dragonList.add(new DragonSort("Irk",87,34));
+        dragonList.add(new DragonSort("Alt",200,33));    
+        dragonList.add(new DragonSort("Arr",245,23));    
+        dragonList.add(new DragonSort("Brt",185,37));    
+                
+        Collections.sort(dragonList);//magic happens.
+            
+        for(Dragon dg:dragonList){    
+            System.out.println(dg.attackPwr+" "+dg.name+" "+dg.maxHealth);    
+        }    
+    }    
+};  
