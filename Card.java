@@ -3,6 +3,7 @@ import java.util.Random;
 
 //Playing card class created by Michael Rollins
 //for CTE Software Development class 2022
+//Thanks to Mr. Kim Gross for help with trouble shooting.
 
 public class Card {
     int value;//1 for an ace, 2 for a two, 3 dor a three, etc... 11 for a jack, 12 for a queen, 13 for a king.
@@ -91,9 +92,9 @@ class Deck{
     int suit;
     String suitString;
     public Deck(){
-        for(int suit=0;suit<=4;suit++){
-            for(int value=1;value>=13;value++){
-                deckList.add(new Card(this.value, this.suit));
+        for(int s=0;s<=3;s++){
+            for(int v=1;v<=13;v++){
+                deckList.add(new Card(v, s));
             }
         }
     };
@@ -105,7 +106,8 @@ class Deck{
         pDeck.add(value, suitString);
     };
     public void readout(){
-        for(Card cd:deckList){    
+        for(Card cd:deckList){   
+            cd.name();//added this line as a bug fix.
             System.out.println(cd.name);    
         }  
     };
@@ -138,6 +140,7 @@ class PlayerDeck extends Deck{
         };
     };
     public void getHandString(){
+        System.out.println("The hand of Player " + id);//an afterthought
         switch(id){//Outputting the contents of a hand.
             case 1: for(Card cd:HandList1){
                 cd.name();
@@ -167,6 +170,7 @@ class PlayerDeck extends Deck{
             default: System.out.println("The id of this players hand is invalid. Id = " + id);//error message
             break;
         };
+        System.out.println();
     };
 };
 class playCards{
@@ -177,7 +181,7 @@ class playCards{
         PlayerDeck p3 = new PlayerDeck(3);
         PlayerDeck p4 = new PlayerDeck(4);
         PlayerDeck p5 = new PlayerDeck(5);
-        for(int i=0; i>5; i++){
+        for(int i=0; i<5; i++){
             deck.draw(p1);
             deck.draw(p2);
             deck.draw(p3);
@@ -199,3 +203,9 @@ class tryHand{
         new Card(1, 1); 
     };
 }
+class tryDeck{
+    public static void main(String args[]){//testing the 'deck' class.
+        Deck deck = new Deck();
+        deck.readout();
+    };
+};
