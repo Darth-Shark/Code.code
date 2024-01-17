@@ -1,8 +1,6 @@
 //Simple horse class created by Kim Gross
 //for CTE Software Development class 2022
 
-//Modified by Michael Rollins
-
 public class Horse {
     String name;// current name of the horse
     int birthYear;//year the horse was born

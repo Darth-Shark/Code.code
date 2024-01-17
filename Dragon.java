@@ -275,12 +275,13 @@ class DragonSort extends Dragon implements Comparable<Dragon>{
         super(dragonName, maxHealthAmount, pwr);//Calling the original dragon constructor.
     };
     public int compareTo(Dragon dg){    
-        if(attackPwr==dg.attackPwr)    
+        /*if(attackPwr==dg.attackPwr)    
         return 0;    
         else if(attackPwr>dg.attackPwr)    
         return 1;    
         else    
-        return -1;    
+        return -1;*/
+        return this.attackPwr - dg.attackPwr;    
     };   
 };
 class doSortDragon{    
@@ -305,4 +306,4 @@ class doSortDragon{
             System.out.println(dg.attackPwr+" "+dg.name+" "+dg.maxHealth);    
         }    
     }    
-};  
+};

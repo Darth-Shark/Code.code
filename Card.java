@@ -6,7 +6,7 @@ import java.util.Random;
 //Thanks to Mr. Kim Gross for help with trouble shooting.
 
 public class Card {
-    int value;//1 for an ace, 2 for a two, 3 dor a three, etc... 11 for a jack, 12 for a queen, 13 for a king.
+    int value;//1 for an ace, 2 for a two, 3 for a three, etc... 11 for a jack, 12 for a queen, 13 for a king.
     String suit;
     String name;//I am not sure if this will work.
     public Card(int value, int suit){
@@ -80,7 +80,7 @@ public class Card {
 class tryCard{
     public static void main(String args[]){
         String n;
-        Card test = new Card(11, 0);
+        Card test = new Card(2, 1);
         n = test.name();
         System.out.println("Your card is the " + n + ".");
     }
