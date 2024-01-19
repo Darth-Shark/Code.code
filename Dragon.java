@@ -1,6 +1,6 @@
 //More complex dragon class created by Michael Rollins
 //for CTE Software Development class 2022
-import java.util.*;  
+import java.util.*; //arraylists and collections
 
 public class Dragon{
     String name;//Name of dragon.

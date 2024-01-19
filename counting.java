@@ -1,4 +1,5 @@
 //import java.sql.Array;
+import java.util.Random;
 
 public class counting {
     public static void main(String[] args) {
@@ -18,9 +19,11 @@ public class counting {
         System.out.print("total "+sum); 
     }
 }
-/*public class countingtest {
+class countingtest {
     public static void main(String[] args) {
-        int i=1;
+        Random rand = new Random();
+        int l = rand.nextInt(99); //threw in a rand for good measure.
+        int i = l + 1;
         System.out.println(i);
         if(i%2==1) {
             System.out.println("Odd");
@@ -30,7 +33,7 @@ public class counting {
         }
         System.out.println();  
     }
-}// Testing the even/odd calculator */
+}// Testing the even/odd calculator 
 
 //Michael Rollins darthsharkmike@gmail.com
 

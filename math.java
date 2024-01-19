@@ -18,8 +18,7 @@ class GFG {
   
         // Printing the variables
         System.out.print("The sum of ");
-        System.out.println(
-            num1 + " and " + num2 + " is:");
+        System.out.println(num1 + " and " + num2 + " is:");
   
         // Printing the result after operation
         System.out.println(num1 + num2);
@@ -114,7 +113,7 @@ class JavaExample2 {
 class SwitchDemo{
     public static void main(String[] args) {
 
-        int month = 8;
+        int month = 2;
         String monthString;
         switch (month) {
             case 1:  monthString = "January";
@@ -167,7 +166,7 @@ class SwitchDemoFallThrough {
             case 10: futureMonths.add("October");
             case 11: futureMonths.add("November");
             case 12: futureMonths.add("December");
-                     break;
+                break;
             default:
         }
 
@@ -202,7 +201,7 @@ class GFG3 {
             dayString = "Tuesday";
             break;
   
-            // Case
+        // Case
         case 3:
             dayString = "Wednesday";
             break;
