@@ -5,9 +5,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner; //user input.
 //import java.util.*; //arraylists and collections. Unused.
 import java.util.Random; //random number generator.
+import java.io.File;  // Import the File class
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
 
 
-class scannerInteractive{ 
+class scannerInteractive{ //An assignment heavily involving the scanner. 
     public static void main(String[] args) {
         String user = new String();
         int age = -1;
@@ -124,4 +127,49 @@ class scannerErrorFixed{ //the solution(s).
             }
         }
     }
+}
+
+
+
+class censusToTxt { //An assignment involving writting a new file.
+    public static void main(String[] args) {
+        String lastName = new String();//loading all my strings.
+        String firstName = new String();
+        firstName = "missingNo"; //to catch a later error.
+        boolean unimportant = true; //this might never matter.
+        String schoolName = new String();
+        String gradeName = new String();//many strings.
+        File myfile = new File("student.txt"); //This is a minor error I am unsure how to fix.
+        try (Scanner inputScanner = new Scanner(System.in)) {
+            System.out.println("Thank you, student, for participating in this survey. Please insert your last name below.");
+            lastName = inputScanner.nextLine();
+            System.out.println("Thank you. Please insert your first name below.");//this is pretty routine.
+            firstName = inputScanner.nextLine();
+            System.out.println("Thank you. Please insert the name of your school below.");
+            schoolName = inputScanner.nextLine();
+            System.out.println("Thank you. Please insert your gade (freshman, sofmore, etc.) below.");
+            gradeName = inputScanner.nextLine();
+            System.out.println("Thank you, Mr(s). " + lastName.trim() + ".");//My new program is very polite.
+            try {
+                FileWriter myWriter = new FileWriter("student.txt");
+                myWriter.write("Census results for student " + firstName.trim() + " " + lastName.trim() + ". "); //lots of trims.
+                myWriter.write("They are a " + gradeName.trim() + " at their school. ");
+                myWriter.write("The above mentioned school is " + schoolName.trim() + ". ");
+                myWriter.close();
+            } catch (IOException e) {
+                System.out.println(e);
+                e.printStackTrace();
+                System.out.println("A .txt file with that name already exists, would you like to delete it?");//I don't think this message will ever appear?
+                System.out.println("Please answer with a boolean value of either 'true' or 'false'.");
+                unimportant = inputScanner.nextBoolean();
+                System.out.println("fileDeleted = " + unimportant); //double check the result.
+                System.out.println("On second thought, I don't actually know how to delete files. :P"); //I am too lazy to actually do this.
+            }
+        } catch(InputMismatchException e) {//This error can only be thrown by the above boolean.
+            System.out.println(e);
+            System.out.println("Invalid input type! Please restart the program.");
+        }
+        System.out.println();
+        System.out.println("I feel like I known you so much better now, " + firstName.trim() + ".");// :)
+    }  
 }
