@@ -8,6 +8,10 @@ import java.util.Random; //random number generator.
 import java.io.File;  // Import the File class
 import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
+//import java.io.PrintWriter;  //Import the PrintWritter class
+//import java.io.BufferedWriter; // Import the BufferedWriter class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+
 
 
 class scannerInteractive{ //An assignment heavily involving the scanner. 
@@ -152,10 +156,15 @@ class censusToTxt { //An assignment involving writting a new file.
             System.out.println("Thank you, Mr(s). " + lastName.trim() + ".");//My new program is very polite.
             try {
                 FileWriter myWriter = new FileWriter("student.txt");
-                myWriter.write("Census results for student " + firstName.trim() + " " + lastName.trim() + ". "); //lots of trims.
-                myWriter.write("They are a " + gradeName.trim() + " at their school. ");
-                myWriter.write("The above mentioned school is " + schoolName.trim() + ". ");
+//                BufferedWriter buffWriter = new BufferedWriter("student.txt");
+                myWriter.write("Census results for student " + firstName.trim() + " " + lastName.trim() + " \n"); //lots of trims.
+//                buffWriter.newLine();
+                myWriter.write("They are a " + gradeName.trim() + " at their school \n");
+//                buffWriter.newLine();
+                myWriter.write("The above mentioned school is " + schoolName.trim() + " \n");
+//                buffWriter.newLine();
                 myWriter.close();
+//                buffWriter.newLine();
             } catch (IOException e) {
                 System.out.println(e);
                 e.printStackTrace();
@@ -172,4 +181,19 @@ class censusToTxt { //An assignment involving writting a new file.
         System.out.println();
         System.out.println("I feel like I known you so much better now, " + firstName.trim() + ".");// :)
     }  
+}
+class txtfromCensus {
+    public static void main(String[] args) {
+        try {
+            File myFile = new File("student.txt");//The pathname is a string, so I could use an input scanner to determine what file this reads off. Useful.
+            Scanner myReader = new Scanner(myFile);//There is a source leak here that I am unsure how to fix.
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine(); //This code is basically stolen from w3 schools. It contains a while loop, which is not somethihng I have implimentd before.
+                System.out.println(data);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("An issue occured trying to access student.txt!");//Error message
+            e.printStackTrace();
+        }
+    }
 }
