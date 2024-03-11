@@ -7,6 +7,7 @@ import java.io.File;//Loading the file class.
 import java.io.FileNotFoundException;  //Loading this class to handle errors.
 
 
+/*
 class TokenizerTests {
     public static void main(String[] args) {
         String s = "4";
@@ -39,6 +40,7 @@ class TokenizerTests2 {
         }
     }
 }
+*/ //Tests with the tokenizer.
 
 class splitStringTokens {//Note to Mr. Gross, letter_frenquency.csv had several blank lines at the end, were these mistakes? 
                         //I deleted them because I couln't figure out a workaround for my code.
@@ -51,7 +53,7 @@ class splitStringTokens {//Note to Mr. Gross, letter_frenquency.csv had several 
         float percentage = 0;
         File myfile = new File("letter_frequency.csv");//An afterthought. My code wasn't working before this (for some inexplicable reason :)
         try {
-            Scanner myReader = new Scanner(myfile);//Unsure how to fix this resource leak.
+            Scanner myReader = new Scanner(myfile);
 
             activeString = myReader.nextLine();//Code to skip first line; because the first line dosen't matter.
             System.out.println(activeString);
@@ -69,6 +71,7 @@ class splitStringTokens {//Note to Mr. Gross, letter_frenquency.csv had several 
                 s = s.trim();
                 percentage = percentage + Float.parseFloat(s);//At the start of coding, this was an int. Fixed.
             }
+            myReader.close();//Fixed the source leak.
             System.out.println("Processed data for " + lines + " letters.");
             System.out.println("Average letter frequency: " + frequency/lines);//I could just divide by 26, but this works too.
             System.out.println("Total percentage of characters: " + percentage);//Easy. *bow*

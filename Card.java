@@ -3,6 +3,7 @@ import java.util.Random;
 
 //Playing card class created by Michael Rollins
 //for CTE Software Development class 2022
+//Updated 3/9/2024
 //Thanks to Mr. Kim Gross for help with trouble shooting.
 
 public class Card {
@@ -111,66 +112,66 @@ class Deck{
             System.out.println(cd.name);    
         }  
     };
+    public void reset(){//Resets the deck.
+        int j = deckList.size();
+        while(j>=1) {
+            j--;
+            deckList.remove(j);
+        }
+        for(int s=0;s<=3;s++){
+            for(int v=1;v<=13;v++){
+                deckList.add(new Card(v, s));
+            }
+        }
+    }
 };
 class PlayerDeck extends Deck{
-    ArrayList<Card> HandList1=new ArrayList<Card>();
-    ArrayList<Card> HandList2=new ArrayList<Card>();
-    ArrayList<Card> HandList3=new ArrayList<Card>();
-    ArrayList<Card> HandList4=new ArrayList<Card>();
-    ArrayList<Card> HandList5=new ArrayList<Card>();
+    ArrayList<Card> HandList=new ArrayList<Card>();
     int id;
+    int sum;
     String handString;
-    PlayerDeck(int idInt){
+    int aces;
+    public PlayerDeck(int idInt){
         id = idInt;
     };
     public void add(int value, String suit){
-        switch(id){//I can't figure out a better way to do this. You can't create an array from a variable apparently.
-            case 1: HandList1.add(new Card(value,suit));
-            break;
-            case 2: HandList2.add(new Card(value,suit));
-            break;
-            case 3: HandList3.add(new Card(value,suit));
-            break;
-            case 4: HandList4.add(new Card(value,suit));
-            break;
-            case 5: HandList5.add(new Card(value,suit));
-            break;
-            default: System.out.println("The id of this players hand is invalid. Id = " + id);//error message
-            break;
-        };
+        HandList.add(new Card(value,suit));
+        if (value==1) {
+            aces++;
+        }
     };
-    public void getHandString(){
+    public void readout(){//A function from the Deck class fullfills this purpose.
         System.out.println("The hand of Player " + id);//an afterthought
-        switch(id){//Outputting the contents of a hand.
-            case 1: for(Card cd:HandList1){
-                cd.name();
-                System.out.println(cd.name);
-            };
-            break;
-            case 2: for(Card cd:HandList2){
-                cd.name();
-                System.out.println(cd.name);
-            };
-            break;
-            case 3: for(Card cd:HandList3){
-                cd.name();
-                System.out.println(cd.name);
-            };
-            break;
-            case 4: for(Card cd:HandList4){
-                cd.name();
-                System.out.println(cd.name);
-            };
-            break;
-            case 5: for(Card cd:HandList5){
-                cd.name();
-                System.out.println(cd.name);
-            };
-            break;
-            default: System.out.println("The id of this players hand is invalid. Id = " + id);//error message
-            break;
+        for(Card cd:HandList){
+            cd.name();
+            System.out.println(cd.name);
         };
         System.out.println();
+    };
+    public int getValue(){
+        sum = 0;
+        for(Card cd:HandList){
+            if (cd.value==1) {
+                sum = sum + 11;
+            }else if (cd.value<=10) {
+                sum = sum + cd.value;
+            } else {
+                sum = sum + 10;
+            }
+        };
+        if(sum>=21 && aces>=0) {
+            aces--;
+            sum = sum -10;
+        }
+        this.value = sum;
+        return sum;
+    };
+    public void clear() {
+        int j = HandList.size();
+        while(j>=1) {
+            j--;
+            HandList.remove(j);
+        }
     };
 };
 class playCards{
@@ -188,21 +189,21 @@ class playCards{
             deck.draw(p4);
             deck.draw(p5);
         };
-        p1.getHandString();
-        p2.getHandString();
-        p3.getHandString();
-        p4.getHandString();
-        p5.getHandString();
+        p1.readout();
+        p2.readout();
+        p3.readout();
+        p4.readout();
+        p5.readout();
     };
 };
 class tryHand{
     public static void main(String args[]){
-        Deck deck = new Deck();
-//        PlayerDeck p1 = new PlayerDeck(1);
-        deck.readout();
-        new Card(1, 1); 
+        PlayerDeck p1 = new PlayerDeck(1);
+        p1.add(1, "spades");
+        p1.readout();
+        p1.clear();
     };
-}
+};
 class tryDeck{
     public static void main(String args[]){//testing the 'deck' class.
         Deck deck = new Deck();

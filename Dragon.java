@@ -1,10 +1,11 @@
 //More complex dragon class created by Michael Rollins
 //for CTE Software Development class 2022
+//Last updated 3/8/24
 import java.util.*; //arraylists and collections
 
 public class Dragon{
     String name;//Name of dragon.
-    String breathType;//Breath weapon type of dragon.
+    String breathType = "null";//Breath weapon type of dragon. 2/28/24, breath type is now "null" by default.
     int maxHealth;//Max health of dragon.
     int health;//Current health of dragon.
     int attackPwr;//Stregnth of dragon.
@@ -24,20 +25,26 @@ public class Dragon{
         System.out.println("Created new dragon, " + name + ".");
     };
     public void setBreath(String newBreath){//Method to change breath weapon type.
-        if(newBreath=="fire" || newBreath=="ice" || newBreath=="dark" || newBreath=="green fire" || newBreath=="blue" || newBreath=="frost" || newBreath=="hoarfrost" || newBreath=="purple fire"){
+
+        newBreath = newBreath.trim();//2/27/24 Added this line to fix potential errors
+        newBreath = newBreath.toLowerCase();//Same as above.
+
+        if(newBreath.equals("fire") || newBreath.equals("ice") || newBreath.equals("dark") || newBreath.equals("green fire") || newBreath.equals("blue fire") || newBreath.equals("frost") || newBreath.equals("hoarfrost") || newBreath.equals("purple fire")){
             breathType=newBreath;
             System.out.println(name + "'s breath type succesfully set to " + newBreath + "!");
         }
-        else if(newBreath=="null"){
+        else if(newBreath.equals("null")){
             breathType=newBreath;
-            System.out.println(name + " doesn't have a breath wepon.");
+            System.out.println(name + " doesn't have a breath weapon.");
         }
         else{
             System.out.println(newBreath + " is an invalid attack type.");
+            breathType="null";
+            System.out.println(name + " doesn't have a breath weapon.");
         };//Credit to Mr. Gross for more effective setBreath method.
     }; 
     public void setBreath(int newBreath){//Alternate version of this method, suggested by Mr. Gross.
-        String [] [] breathList = {{"null","fire","blue fire","green fire","purple fire","ice","frost","hoarfrost","dark"}};//list of breath wepons.
+        String [] [] breathList = {{"null","fire","blue fire","green fire","purple fire","ice","frost","hoarfrost","dark"}};//list of breath weapons.
         //if(newBreath<=breathList.length){//a neat little trick due to the first item in an array being item 0, not item 1.
         if(newBreath<=8){//trick didn't work.
             breathType = breathList[0][newBreath];
@@ -45,11 +52,12 @@ public class Dragon{
         }
         else if(newBreath==0){
             breathType = breathList[0][newBreath];
-            System.out.println(name + " doesn't have a breath wepon.");
+            System.out.println(name + " doesn't have a breath weapon.");
         }
         else{
-            System.out.println(newBreath + " is an invalid attack number.");//specified error code, to donfirm you checked for a number.
-            System.out.println(name + " doesn't have a breath wepon.");
+            System.out.println(newBreath + " is an invalid attack number.");//specified error code, to confirm you checked for a number.
+            breathType = "null";
+            System.out.println(name + " doesn't have a breath weapon.");
         };
     };
 
@@ -77,61 +85,61 @@ public void flyToggle(){//Toggles boolean isFlying.
             System.out.println(name + " is unconcious and can't attack!");
             dmg = 0;//prevent unconsious dragons from dealing damage.
         }
-        else if(breathType=="fire"){
+        else if(breathType.equals("fire")){
             System.out.println(name + " breathes " + breathType + " at their opponents!");
             dmg = attackPwr + attackPwr;
         }
-        else if(breathType=="green fire" || breathType=="blue fire" || breathType=="purple fire"){
+        else if(breathType.equals("green fire") || breathType.equals("blue fire") || breathType.equals("purple fire")){//Colered fire is a flat upgrade from normal fire, but it can't be used by weak dragons.
             if(attackPwr>=10){
                 System.out.println(name + " breathes colorful " + breathType + " at their opponents!");
                 dmg = attackPwr + attackPwr + 5;
             }
             else{
-                System.out.println(name + " uses their claws, as they arn't strong enough to use their breath wepon yet.");
+                System.out.println(name + " uses their claws, as they arn't strong enough to use their breath weapon yet.");
                 dmg = attackPwr;
             }
         }
-        else if(breathType=="ice"){
+        else if(breathType.equals("ice")){
             System.out.println(name + " chills the enemy with their " + breathType + " breath!");
             dmg = attackPwr + 10;
         }
-        else if(breathType=="frost"){//Frost is a more powerful version of ice that scales better, hoarfrost is another step up from that.
+        else if(breathType.equals("frost")){//Frost is a more powerful version of ice, hoarfrost is another step up from that. Niether can be used by weak dragons.
             if(attackPwr>=10){
                 System.out.println(name + " chills the enemy with their " + breathType + " breath!");
                 dmg = attackPwr + 15;
             }
             else{
-                System.out.println(name + " uses their claws, as they arn't strong enough to use their breath wepon yet.");
+                System.out.println(name + " uses their claws, as they arn't strong enough to use their breath weapon yet.");
                 dmg = attackPwr;
             }
         }
-        else if(breathType=="hoarfrost"){
+        else if(breathType.equals("hoarfrost")){
             if(attackPwr>=15){
                 System.out.println(name + " chills the enemy with their " + breathType + " breath!");
                 dmg = attackPwr + 20;
             }
             else{
-                System.out.println(name + " uses their claws, as they arn't strong enough to use their breath wepon yet.");
+                System.out.println(name + " uses their claws, as they arn't strong enough to use their breath weapon yet.");
                 dmg = attackPwr;
             }
         }
-        else if(breathType=="dark"){
+        else if(breathType.equals("dark")){
             if(attackPwr>=7){
                 System.out.println(name + " spews a stream of inky darkness at their opponents!");
                 dmg = attackPwr + attackPwr + attackPwr - 10;
             }
             else {
-                System.out.println(name + " uses their claws, as they arn't strong enough to use their breath wepon yet.");
+                System.out.println(name + " uses their claws, as they arn't strong enough to use their breath weapon yet.");
                 dmg = attackPwr;
             }
         }
-        else if(breathType=="null"){
+        else if(breathType.equals("null")){
             System.out.println(name + " dosen't have a breath weapon, so they use their claws instead!");
             dmg = attackPwr;
         }
         else{
             System.out.println(name + " dosen't have a valid breath type! They use their claws instead.");
-            dmg = attackPwr;
+            dmg = attackPwr; //2/27/24 A code change makes this function irrelivant. I left it in for error catching purposes.
         }
     };
     public void breathe(Dragon targetDragon){
@@ -180,7 +188,7 @@ class doDragon{
         Dragon dFL = new Dragon("Flake", 30, 10);//create new dragons.
         Dragon dCR = new Dragon("Cris", 40, 7);
         Dragon dCH = new Dragon("Char", 25, 8);
-        dFL.setBreath("fire");//set breath wepons. I should make this a part of the constructor.
+        dFL.setBreath("fire");//set breath weapons. I should make this a part of the constructor.
         dCR.setBreath("ice");//can I have the constructor call the breath method?
         dCH.setBreath("dark");
         
@@ -226,20 +234,24 @@ class DragonPractice extends DragonAggressive{
         XP = value;
     };
     public void damage(int damageDelt, Dragon sourceDragon){
-        damage(damageDelt);
-        if(isConsious==false){//Use '==', not '='. '=' Changed the value I thought I was testing for.
-            System.out.print(sourceDragon.name + " defeated a practice dragon");
-            if(sourceDragon.attackPwr>=attackPwr+6){//Fair and realistic. You don't get points for beating a dragon 30 power below you. You can be at most 5 power stronger.
-                System.out.println(", but they didn't gain any atttack because they already have an attack power of " + sourceDragon.attackPwr);
+        if(isConsious==false){
+            System.out.println(name + " has already been defeated!");
+        }else{
+            damage(damageDelt);
+            if(isConsious==false){//Use '==', not '='. '=' Changed the value I thought I was testing for.
+                System.out.print(sourceDragon.name + " defeated a practice dragon");
+                if(sourceDragon.attackPwr>=attackPwr+6){//Fair and realistic. You don't get points for beating a dragon 30 power below you. You can be at most 5 power stronger.
+                    System.out.println(", but they didn't gain any atttack because they already have an attack power of " + sourceDragon.attackPwr + ".");
+                }
+                else{
+                    System.out.println("!");
+                    sourceDragon.attackUp(XP);
+                }
             }
-            else{
-                System.out.println("!");
-                sourceDragon.attackUp(XP);
+            else if(damageDelt>=1){
+                System.out.println(name + " retaliates!");
+                breathe(sourceDragon);
             }
-        }
-        else if(damageDelt>=1){
-            System.out.println(name + " retaliates!");
-            breathe(sourceDragon);
         }
     };
 };
@@ -251,7 +263,7 @@ class doManyDragon{
         Dragon d1 = new DragonPractice("Null 1",25,3,3);
         Dragon d2 = new DragonPractice("Null 2",30,7,5);
         Dragon d3 = new DragonAggressive("Thane",75,7);
-        dFL.setBreath("fire");//set breath wepons. I should make this a part of the constructor.
+        dFL.setBreath("fire");//set breath weapons. I should make this a part of the constructor.
         d3.setBreath(5);
 
         

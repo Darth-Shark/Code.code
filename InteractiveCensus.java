@@ -178,6 +178,7 @@ class censusToTxt { //An assignment involving writting a new file.
             System.out.println(e);
             System.out.println("Invalid input type! Please restart the program.");
         }
+        myfile.exists();//Fixed that above minor error.
         System.out.println();
         System.out.println("I feel like I known you so much better now, " + firstName.trim() + ".");// :)
     }  
@@ -186,11 +187,12 @@ class txtfromCensus {
     public static void main(String[] args) {
         try {
             File myFile = new File("student.txt");//The pathname is a string, so I could use an input scanner to determine what file this reads off. Useful.
-            Scanner myReader = new Scanner(myFile);//There is a source leak here that I am unsure how to fix.
+            Scanner myReader = new Scanner(myFile);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine(); //This code is basically stolen from w3 schools. It contains a while loop, which is not somethihng I have implimentd before.
                 System.out.println(data);
             }
+            myReader.close();//Solved the source leak!
         } catch (FileNotFoundException e) {
             System.out.println("An issue occured trying to access student.txt!");//Error message
             e.printStackTrace();
