@@ -30,12 +30,18 @@ public class Card {
     }
     public Card(int value, String suit){
         this.value = value;
+        this.setSuit(suit);
+    }
+    public void setSuit(String suit){
         if(suit=="spades" || suit=="diamonds" || suit=="clubs" || suit=="hearts"){
             this.suit = suit;
         }
         else{//error message
             System.out.println(suit + " is an invalid suit name. Valid suit names are 'spades', 'diamonds', 'clubs', and 'hearts'. Their respective numbers are 0, 1, 2, and 3.");
         }
+    }
+    public void setValue(int value){
+        this.value = value;
     }
     public String name(){//this is so ineffeicient, but I can't think of a simpler way.
         switch(value) {
