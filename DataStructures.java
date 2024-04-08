@@ -1,40 +1,42 @@
-//
-//
-import java.util.*;
+//Some data structures made by Michael Rollins.
+//CTE Software Development 2, 2024
+//Update 4/8/24, added way more comments.
+import java.util.*;//Scanners.
 
 public class DataStructures {
-    String c1; String c2; String c3; String c4; String c5;
-    String top;
-    int size = 0;
-    String bottom;//This one isn't really necesarry. It is always equal to c1.
+    String c1; String c2; String c3; String c4; String c5;//Loading all of the string items.
+    int size = 0;//How many strings are in the stack/queue.
+    String bottom;//This one isn't really necesarry. It is always equal to c1, even if c1 is null.
+    String top;//This string was the tougher one to impliment.
 
     public DataStructures() {}
     public String peek() {
-        return bottom;
+        return bottom;//I could technically just use DataStructurePointer.bottom, but this gives me options.
     }
-    public void add(String String) {
+    public void add(String String) {//String String is a rather ugly arguement. It could not be used very felxibly.
         switch (size) {//simple switch
-            case 1: c2 = String; break;
+            case 1: c2 = String; break;//Finding the first opening.
             case 2: c3 = String; break;
             case 3: c4 = String; break;
             case 4: c5 = String; break;
-            case 0: c1 = String; bottom = String; break;
-            default: size--; String = top; break;
+            case 0: c1 = String; bottom = String; break;//If the stack/queue was empty.
+            default: size--; String = top; break;//If the stack is full, no new card is added. 
         }
-        top = String;
+        top = String;//We replace the top, simple.
+        bottom = c1;//This was an error I encountered in my program. Fixed 4/8/24.
         size++;
     }
     public String pop() {
         String returns = top;
-        switch (size) {
+        switch (size) {//Because of the way I implimented this, the top card will always have the same posistion for any given size.
             case 1: top = null; c1 = null; break;
             case 2: top = c1; c2 = null; break;
-            case 3: top = c2; c3 = null; break;
+            case 3: top = c2; c3 = null; break;//Set the top to the one below top, then clear top. A more versitale way to do this would be to check each item in decending order.
             case 4: top = c3; c4 = null; break;
             case 5: top = c4; c5 = null; break;
-            default: size++; break;
+            default: size++; break;//If the stack is empty. I should add an error message to this later.
         }
-        size--;
+        size--;//Because it is now smaller.
         return returns;
     }
     public String unqueue(){
@@ -43,11 +45,11 @@ public class DataStructures {
             size++;
         }
         c1 = c2; c2 = c3; c3 = c4; c4 = c5; c5 = null; //This is a very simple way to do this. 
-        //I tried some compliated thing to determine what the next bottom was, by why would I need to?
-        //I don't need to change the value of top. It is still on top.
-        bottom = c1;
+        //I tried some compliated thing to determine what the next bottom was, but why would I need to?
+        //Also, I don't need to change the value of top. It is still on top.
+        bottom = c1;//This was the only place where bottom was defined in the program, so this function didn't work the first time it was run. Fixed 4/8/24.
         size--;
-        return returns;
+        return returns;//This would be hard to understand without the automatic colors.
     }
 
 
@@ -61,7 +63,7 @@ public class DataStructures {
             System.out.println();
             String input = scan.next();
             input = input.trim();//Simplifies inputs.
-            input = input.toLowerCase();
+            input = input.toLowerCase();//Even though the interface requires a user, it shouldn't expect a compitent user.
             if(input.equals("pop")) {
                 String string = data.pop();
                 System.out.println(string);
@@ -73,17 +75,17 @@ public class DataStructures {
                 String string = new String(scan.next());//A list of strings is a very simple one.
                 data.add(string);
             } else if(input.equals("peek")) {
-                String string = data.peek();
-                System.out.println(string);
+                String string = data.peek();//This function can be implimented multiple ways for versitality.
+                System.out.println(string);//I could just use "System.out.println(data.top);" here.
             } else if(input.equals("size")) {
                 System.out.println(data.size);
-            } else if(input.equals("exit")) {
+            } else if(input.equals("exit")) {//Convinient for debugging.
                 break;
             } else if(input.equals("help")) {
                 System.out.println("Valid commands are as follows.");//More info.
                 System.out.println("pop, unqueue, add, peek, size, exit, and help.");
                 System.out.println("Pop removes the newest string and outputs it.");
-                System.out.println("Unqueue (unq also works) removes the oldest string and outputs it");
+                System.out.println("Unqueue (unq also works) removes the oldest string and outputs it");//Explanation self-explanatory.
                 System.out.println("Add adds your next string to the structure.");
                 System.out.println("Peek outputs the oldest input string without removing it.");
                 System.out.println("Size returns the number of stored strings.");
@@ -91,7 +93,7 @@ public class DataStructures {
                 System.out.println("Exit exits the program.");//Runs the second half, then exits.
             } else if(input.equals("who let the dogs out?")) {//fun stuff.
                 System.out.println("Who?");
-                System.out.println("Who?");
+                System.out.println("Who?");//Who?
                 System.out.println("Who?");
                 System.out.println("Who?");
             } else if(input.equals("Open sesame.")) {
@@ -118,7 +120,7 @@ public class DataStructures {
             System.out.println("So, if I take the top card off repeatedly, it's like a stack structure.");
             System.out.println("First in, last out, so I get this order. " + c4.name() + ", " + c3.name() +  ", " + c2.name() +  ", " + c1.name() + ".");
             //I don't need to simulate a stack, I already know what it will output.
-            System.out.println("But if I draw the cards off the bottom, it's a queue.");//Of course, you can take the cards out in any order you like.
+            System.out.println("But if I draw the cards off the bottom, it's a queue.");//Of course, you 'can' take the cards out in any order you like.
             System.out.println("First in, first out, giving me this order. " + c1.name() + ", " + c2.name() +  ", " + c3.name() +  ", " + c4.name() + ".");
             System.out.println("Does that make sense?");
             scan.next();//I hope the user feels engaged.
@@ -126,6 +128,6 @@ public class DataStructures {
             break;//The while loop just makes this section easier to read.
         }
         scan.close();//close source leaks.
-        data.peek();
+        data.peek();//This closes the source leak without printing anything, so the user dowent notice anthing odd.
     }
 }
