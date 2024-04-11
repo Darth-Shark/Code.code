@@ -7,6 +7,13 @@ for my java class to learn troubleshooting on
 public class error {//Changed "Main" to "error"
     public static void main(String[] args) {//Added this line so the code can be run. Also added many tabs for readability.
         int i;//Initializing the "i" variable seperately. Uncapitalized "Int".
+        boolean debug;
+        debug = true;//Comment out this line to disable debug print statements.
+
+        if (debug) {
+            System.out.println("Initiating program"); //The usefulness of this line is eclipsed by the two print statements below it.
+        }
+
         System.out.println("hello everybody");
         System.out.println("am I doing this correctly");//I think you wanted to add a question mark here. That's not exactly an error, but still.
         for (i=0;i<10;i++){//Deleted, "int"
@@ -18,6 +25,10 @@ public class error {//Changed "Main" to "error"
                 System.out.println("i is not equal to zero");
 
             }
+        }
+        
+        if(debug) {
+            System.out.println("Advancing to second step of program.");//This code is already filled with print statements, this is one of the few places it makes sence to insert one.
         }
 
         for (i=9;i>-1;i--){//Uncapitalized "For", changed a colon to a semicolon, deleted "int", changed the logic of the loop.
@@ -34,5 +45,10 @@ public class error {//Changed "Main" to "error"
         }
         //what other errors can I put into a source code file?
         //Many. :)
+
+        if(debug) {
+            System.out.println("Halting Program");//Informes the user that the code halted intentionally.
+        }
+
     }
 }
