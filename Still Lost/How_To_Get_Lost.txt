@@ -1,0 +1,16 @@
+When the program is started, you will recieve a breif description of your current room.
+You room may have up to four exits in the directions north, south, east, and west.
+Up to three of these may be missing from a given room.
+You may take several actions by typing commands.
+To move, you may type the command "west" to move west, "north" to move north, etc.
+You may also use the "look" command to see the description of your currect room again.
+If you get stuck, the "look" command may occasionally find a new passage where there was none before!
+To see more options, use the "help" command.
+To halt the program, use the "exit" command.
+Case does not matter when typing commands.
+A couple of the commands have the same function. 
+"west", "w", and "go west" will all function the same.
+I hope you enjoy this simple game, even if you are
+                                                   Still Lost.
+
+-Michael Rollins
